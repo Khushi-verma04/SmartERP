@@ -1,11 +1,14 @@
 const express = require("express");
 const pool = require("./db");
 const authRoutes = require("./routes/authRoutes");
+const companyRoutes = require("./routes/companyRoutes");
 
 const app = express();
 
 app.use(express.json());
+
 app.use("/api/auth", authRoutes);
+app.use("/api/company", companyRoutes);
 
 app.get("/", async (req, res) => {
   try {
