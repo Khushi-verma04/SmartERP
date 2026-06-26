@@ -4,6 +4,7 @@ const authRoutes = require("./routes/authRoutes");
 const companyRoutes = require("./routes/companyRoutes");
 const ledgerRoutes = require("./routes/ledgerRoutes");
 const groupRoutes = require("./routes/groupRoutes");
+const stockRoutes = require("./routes/stockRoutes");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/company", companyRoutes);
 app.use("/api/ledger", ledgerRoutes);
 app.use("/api/group", groupRoutes);
+app.use("/api/stock", stockRoutes);
 
 app.get("/", async (req, res) => {
   try {
