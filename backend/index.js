@@ -7,6 +7,8 @@ const groupRoutes = require("./routes/groupRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const purchaseRoutes = require("./routes/purchaseRoutes");
 const supplierRoutes = require("./routes/supplierRoutes");
+const salesRoutes = require("./routes/salesRoutes");
+const customerRoutes = require("./routes/customerRoutes");
 
 const app = express();
 
@@ -19,6 +21,8 @@ app.use("/api/group", groupRoutes);
 app.use("/api/stock", stockRoutes);
 app.use("/api/purchase", purchaseRoutes);
 app.use("/api/supplier", supplierRoutes);
+app.use("/api/sales", salesRoutes);
+app.use("/api/customer", customerRoutes);
 
 app.get("/", async (req, res) => {
   try {
