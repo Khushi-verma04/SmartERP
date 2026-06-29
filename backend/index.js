@@ -1,3 +1,4 @@
+const cors = require("cors");
 const express = require("express");
 const pool = require("./db");
 const authRoutes = require("./routes/authRoutes");
@@ -9,10 +10,12 @@ const purchaseRoutes = require("./routes/purchaseRoutes");
 const supplierRoutes = require("./routes/supplierRoutes");
 const salesRoutes = require("./routes/salesRoutes");
 const customerRoutes = require("./routes/customerRoutes");
+const reportRoutes = require("./routes/reportRoutes");
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/company", companyRoutes);
@@ -23,6 +26,7 @@ app.use("/api/purchase", purchaseRoutes);
 app.use("/api/supplier", supplierRoutes);
 app.use("/api/sales", salesRoutes);
 app.use("/api/customer", customerRoutes);
+app.use("/api/reports", reportRoutes);
 
 app.get("/", async (req, res) => {
   try {
