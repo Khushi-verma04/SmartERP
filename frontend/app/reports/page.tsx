@@ -1,17 +1,40 @@
 "use client";
+import { handleKeyboardShortcuts } from "../../utils/keyboardShortcuts";
 import { useEffect, useState } from "react";
 import jsPDF from "jspdf";
 
 export default function ReportsPage() {
     const [stockData, setStockData] = useState([]);
     const [search, setSearch] = useState("");
+    const [lastUpdated, setLastUpdated] = useState("");
     console.log(search);
     useEffect(() => {
         fetch("http://localhost:5000/api/reports/stock")
             .then((res) => res.json())
             .then((data) => {
                 setStockData(data);
+                setLastUpdated(new Date().toLocaleString());
             });
+    }, []);
+    useEffect(() => {
+        const listener = (event: KeyboardEvent) => {
+            handleKeyboardShortcuts(event, {
+                refresh: () => window.location.reload(),
+
+                downloadPDF: downloadPDF,
+
+                focusSearch: () => {
+                    const input = document.getElementById("search") as HTMLInputElement;
+                    input?.focus();
+                },
+            });
+        };
+
+        document.addEventListener("keydown", listener);
+
+        return () => {
+            document.removeEventListener("keydown", listener);
+        };
     }, []);
     const downloadPDF = () => {
         const doc = new jsPDF();
@@ -105,9 +128,10 @@ export default function ReportsPage() {
                 )}
             </p>
             <p>
-                Last Updated: {new Date().toLocaleString()}
+                Last Updated: {lastUpdated}
             </p>
             <input
+                id="search"
                 type="text"
                 placeholder="Search Item..."
                 value={search}
