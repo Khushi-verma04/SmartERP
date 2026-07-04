@@ -9,23 +9,28 @@ router.get("/test", (req, res) => {
 
 router.post("/create", async (req, res) => {
   try {
-    const {
-      invoice_no,
-      customer_id,
-      date,
-      total_amount
-    } = req.body;
+  const {
+  invoice_no,
+  customer_name,
+  product_name,
+  quantity,
+  price,
+  date,
+  total_amount
+} = req.body;
+
+console.log(req.body);
 
     const result = await pool.query(
       `INSERT INTO sales_vouchers
-      (invoice_no, customer_id, date, total_amount)
+      (invoice_no, customer_name, date, total_amount)
       VALUES ($1, $2, $3, $4)
       RETURNING *`,
       [
         invoice_no,
-        customer_id,
+        customer_name,
         date,
-        total_amount
+        total_amount,
       ]
     );
 
@@ -88,10 +93,12 @@ router.put("/:id", async (req, res) => {
     const { id } = req.params;
     const {
       invoice_no,
-      customer_id,
+      customer_name,
       date,
       total_amount
     } = req.body;
+
+    console.log(req.body);
 
     const result = await pool.query(
       `UPDATE sales_vouchers

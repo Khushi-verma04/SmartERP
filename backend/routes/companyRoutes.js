@@ -139,6 +139,11 @@ router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
+    await pool.query(
+      "DELETE FROM stock_items WHERE company_id = $1",
+      [id]
+    );
+
     const result = await pool.query(
       "DELETE FROM companies WHERE id = $1 RETURNING *",
       [id]

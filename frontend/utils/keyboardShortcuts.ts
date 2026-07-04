@@ -56,8 +56,8 @@ if (event.ctrlKey && event.key.toLowerCase() === "k") {
 
 // Ctrl + Q → Logout
 if (event.ctrlKey && event.key.toLowerCase() === "q") {
-    event.preventDefault();
-    alert("Logout");
+  event.preventDefault();
+  window.location.href = "/";
 }
 
 // Alt + L → Create Ledger
@@ -91,7 +91,7 @@ if (event.altKey && event.key.toLowerCase() === "u") {
 }
 
 // ==========================
-// VOUCHER SHORTCUTS
+// VOUCHER CUTS
 // ==========================
 
 // F6 → Receipt Voucher
@@ -125,25 +125,25 @@ if (event.key === "F10") {
 }
 
 // ==========================
-// MORE SHORTCUTS
+// MORE CUTS
 // ==========================
 
 // Alt + F8 → Credit Note
-if (event.altKey && event.key === "F8") {
+if (event.key === "F8" && !event.altKey) {
   event.preventDefault();
-  alert("Credit Note");
+  window.location.href = "/sales";
 }
 
 // Alt + F9 → Debit Note
-if (event.altKey && event.key === "F9") {
+if (event.key === "F9" && !event.altKey) {
   event.preventDefault();
-  alert("Debit Note");
+  window.location.href = "/purchase";
 }
 
 // Ctrl + I → Inventory Dashboard
 if (event.ctrlKey && event.key.toLowerCase() === "i") {
   event.preventDefault();
-  alert("Inventory Dashboard");
+  window.location.href = "/inventory";
 }
 
 // Ctrl + N → New Item
@@ -173,7 +173,7 @@ if (event.ctrlKey && event.key.toLowerCase() === "t") {
 // Ctrl + R → Stock Report
 if (event.ctrlKey && event.key.toLowerCase() === "r") {
   event.preventDefault();
-  alert("Stock Report");
+  window.location.href = "/reports";
 }
 
 // Ctrl + B → New Invoice
@@ -197,7 +197,7 @@ if (event.ctrlKey && event.key.toLowerCase() === "m") {
 // Ctrl + C → New Customer
 if (event.ctrlKey && event.key.toLowerCase() === "c" && !event.shiftKey) {
   event.preventDefault();
-  alert("New Customer");
+  window.location.href = "/customers";
 }
 
 // Ctrl + Shift + C → Customer Ledger
@@ -219,7 +219,7 @@ if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === "s") {
 }
 
 // ==========================
-// REPORT SHORTCUTS
+// REPORT CUTS
 // ==========================
 
 // Alt + B → Balance Sheet
@@ -267,6 +267,5 @@ if (event.key === "Escape") {
 // Ctrl + H → Home
 if (event.ctrlKey && event.key.toLowerCase() === "h") {
   event.preventDefault();
-  alert("Home");
-}
-}
+  window.location.href = "/dashboard";
+}}
