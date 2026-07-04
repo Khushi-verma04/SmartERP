@@ -35,10 +35,13 @@ app.get("/", async (req, res) => {
   try {
     const result = await pool.query("SELECT NOW()");
     res.send(`SmartERP Backend Running. Database Connected at ${result.rows[0].now}`);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Database Connection Failed");
-  }
+ } catch (error) {
+  console.error("Database Error:", error);
+  res.status(500).json({
+    message: "Database Connection Failed",
+    error: error.message,
+  });
+}
 });
 
 const PORT = process.env.PORT || 5000;
