@@ -29,7 +29,7 @@ app.use("/api/sales", salesRoutes);
 app.use("/api/customer", customerRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/inventory", inventoryRoutes);
-app.use("/api/dashboard", require("./routes/dashboardRoutes"));
+app.use("/api/dashboard", require("./routes/dashboardRoutes"));cd
 
 app.get("/", async (req, res) => {
   try {
